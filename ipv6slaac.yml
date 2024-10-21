@@ -6,6 +6,9 @@ topology:
       kind: linux
       image: praqma/network-multitool:extra
       exec:
+      - apt-get update
+      - apt-get install -y nginx
+      - service nginx start
       - ip -6 route del default dev eth0
       
     ######################################################################################
