@@ -3,13 +3,15 @@ topology:
   nodes:
     # host LinUX
     PC1:
-      kind: linux
-      image: nginx:latest  # Cambia la imagen de PC1 a una que tiene Nginx por defecto
-      ports:
+    kind: linux
+    image: ubuntu:latest  # Usamos una imagen de Ubuntu
+    ports:
       - "80:80"  # Exponer el puerto 80
-      exec:
+    exec:
+      - apt-get update
+      - apt-get install -y nginx iproute2  # Instalar Nginx y herramientas de red
       - ip -6 route del default dev eth0
-      
+      - nginx
     ######################################################################################
     
     FRR1:
